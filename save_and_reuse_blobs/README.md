@@ -63,7 +63,7 @@ title: "Interactive Document"
 output: ioslides_presentation
 ---
 
-```{r setup, include=F}
+_```{r setup, include=F}
 library(ggplot2)
 library(plotly)
 library(DT)
@@ -74,18 +74,18 @@ con <- dbConnect(RSQLite::SQLite(), dbname="x.db")
 df <- dbGetQuery(con, "select * from t")
 p2 <- lapply(df$obj, unserialize)
 dbDisconnect(con)
-```
+_```
 
-## retrieved plot
+# retrieved plot
 
-```{r, echo=F}
+_```{r, echo=F}
 renderPlotly({ p2[[1]] })
-```
+_```
 
-## retrieved table
+# retrieved table
 
-```{r, echo=F}
+_```{r, echo=F}
 DT::renderDataTable({ p2[[2]][p2[[2]]$c == 1, ] })
+_```
 ```
 
-```
