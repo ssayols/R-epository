@@ -17,27 +17,50 @@ h8 {
 ```
 
 ```{r, results="asis"}
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{css, echo=FALSE}
+h7 {
+  font-size: 12px;
+}
+h8 {
+  font-size: 12px;
+}
+```
+
+```{r, results="asis"}
 cat("#### level_4 {.tabset}\n\n")
 cat("hi from level 4\n\n")
 for(i in 1:3){
   cat("##### level_5", i, "{.tabset}\n\n")
-  cat("hi from level 5\n\n")
+  cat("hi from level 5", i, "\n\n")
   for(j in 1:3){
     cat("###### level_6", j, "{.tabset}\n\n")
-    cat("hi from level 6\n\n")
+    cat("hi from level 6", j, "\n\n")
     for(k in 1:3){
 #     cat("####### level_7", k, "{.tabset}\n\n")
       cat('<div id="level_7-', i, '-', j, '-', k, '" class="section level7 tabset">', sep="")
       cat('<h7>level_7 1</h7>')
-      cat("hi from level 7\n\n")
+      cat("hi from level 7", i, j, k, "\n\n")
 #      cat("######## level_8_1\n\n")
       cat('<div id="level_8-', i, '-', j, '-', k, '-1" class="section level8">', sep="")
       cat('<h8>level_8 1</h8>')
-      cat("hi from level 8_1\n\n")
+      cat("hi from level 8_1", i, j, k, "\n\n")
+      cat("</div>\n\n")  # closes '<h8>level_8 1</h8>'
 #      cat("######## level_8_2\n\n")
       cat('<div id="level_8-', i, '-', j, '-', k, '-2" class="section level8">', sep="")
-      cat("hi from level 8_2\n\n")
+      cat("hi from level 8_2", i, j, k, "\n\n")
       cat('<h8>level_8 2</h8>')
+      cat("</div>\n\n")  # closes '<h8>level_8 2</h8>'
+      cat("</div>\n\n")  # closes '<h7>level_7</h7>'
     }
   }
 }
+```
