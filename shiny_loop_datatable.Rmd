@@ -1,0 +1,15 @@
+#### Results: tables {.tabset}
+
+```{r tables, results='asis'}
+htmltools::tagList(
+  lapply(colnames(fit2$coefficients), function(coefficient) {
+    x <- topTable(fit2, coef=coefficient, number=100)
+    # substitute tags$div() with list() if content is not contained within a tab
+    tags$div(id=coefficient, class="section level5",
+      tags$h5(coefficient),
+      tags$p(sprintf("%d differentially expressed genes at FDR 5%%.\n\n", sum(x$adj.P.Val < .05))),
+      DT::datatable(x, options=list(pageLength=5), rownames=FALSE)
+    )
+  })
+)
+```
