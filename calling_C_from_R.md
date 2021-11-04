@@ -1,7 +1,7 @@
-== Why calling C from R ==
+## Why calling C from R
 R was designed with arrays in mind and sucks at looping through data structures in iterative algorithms. Getting all the speed advantages from C with the convenience of R's environment for scientific and statistical programming, is possible if compiling C functions in shared libraries and embedding its calls in R code.
 
-== Considerations ==
+## Considerations
 
 Two major considerations have to be taken into account:
 
@@ -9,7 +9,7 @@ Two major considerations have to be taken into account:
 
 * Function has no return value. Instead, it modifies it's input arguments passed by reference.
 
-== A toy function ==
+## A toy function
 
 This function squares the ''n'' elements of the ''x'' vector:
 
@@ -25,9 +25,9 @@ void f(int *_x, double *x)
 }
 ```
 
-<span style="color:red">BE EXTREMELY CAREFUL NOT GOING BEYOND THE BOUNDARIES OF THE VECTOR.</span>
+**BE EXTREMELY CAREFUL NOT GOING BEYOND THE BOUNDARIES OF THE VECTOR.**
 
-== Compiling and calling the C code ==
+## Compiling and calling the C code
 
 The C source file has to be compiled as a shared object from the UNIX prompt with:
 
@@ -42,7 +42,7 @@ R> dyn.load("f.so")
 R> .C("f", _x=as.integer(5), x=as.double(rnorm(5)))
 ```
 
-== Wrapper to the C function ==
+## Wrapper to the C function
 
 Creating a wrapper function in R to call the original C function has some benefits, apart from being user-frendly:
 
@@ -61,7 +61,7 @@ foo <- function(x) {
 }
 ```
 
-== Error handling ==
+## Error handling
 
 Use the R ''error'' or ''warning'' functions:
 
